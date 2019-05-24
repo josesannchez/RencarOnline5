@@ -1,11 +1,14 @@
 package sanchezartega.facci.rencaronline;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.view.View;
+import android.support.v4.app.ListFragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
@@ -22,26 +25,25 @@ import sanchezartega.facci.rencaronline.fragments.FormularioFragment;
 import sanchezartega.facci.rencaronline.fragments.GreenFragment;
 import sanchezartega.facci.rencaronline.fragments.ListaPersonajesFragment;
 import sanchezartega.facci.rencaronline.fragments.RedFragment;
+import sanchezartega.facci.rencaronline.listasimple.Servicios;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, RedFragment.OnFragmentInteractionListener,
         GreenFragment.OnFragmentInteractionListener, FormularioFragment.OnFragmentInteractionListener,
         ListaPersonajesFragment.OnFragmentInteractionListener, ContenedorFragment.OnFragmentInteractionListener {
 
+    private RecyclerView recycler;
+    private LinearLayoutManager lManager;
+    private CollapsingToolbarLayout collapser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -60,6 +62,11 @@ public class MainActivity extends AppCompatActivity
 
 
 
+    }
+
+    private void setToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -84,14 +91,26 @@ public class MainActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        Intent intent;
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_favorite:
+                intent =new Intent(MainActivity.this, Servicios.class);
+                startActivity(intent);
+                return true;
+            case R.id.nav_view:
+                showSnackBar("Se abren los ajustes");
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showSnackBar(String msg) {
+        Snackbar
+                .make(findViewById(R.id.coordinator), msg, Snackbar.LENGTH_LONG)
+                .show();
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -105,18 +124,24 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.home) {
             miFragment=new ListaPersonajesFragment();
             fragmentSeleccionado=true;
+            finish();
         }  else if (id == R.id.nav_slideshow) {
             miFragment=new RedFragment();
             fragmentSeleccionado=true;
-        }else if (id == R.id.nav_send) {
-
+            finish();
+        }else if (id == R.id.nav_view) {
+            miFragment=new ListFragment();
+            fragmentSeleccionado=true;
+            finish();
         }
         if (fragmentSeleccionado==true) {
             getSupportFragmentManager().beginTransaction().replace(R.id.content_main, miFragment).commit();
+
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+
     }
 
     @Override

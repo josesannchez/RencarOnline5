@@ -15,7 +15,7 @@ public class RedFrA extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_red);
+        setContentView(R.layout.redfat);
         registro = (Button) findViewById(R.id.btnAlquila);
         registro.setOnClickListener(new View.OnClickListener() {
             @Override

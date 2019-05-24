@@ -12,7 +12,10 @@ import android.widget.ProgressBar;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import sanchezartega.facci.rencaronline.Login.ui.login.LoginActivity;
+import sanchezartega.facci.rencaronline.Slide.PrefManager;
 import sanchezartega.facci.rencaronline.Slide.WelcomeActivity;
+import sanchezartega.facci.rencaronline.lista3.Main3Activity;
 
 
 public class SplashCreen extends AppCompatActivity {
@@ -26,10 +29,11 @@ public class SplashCreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashcreen);
-        ;
+
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //Hacemos inicie en pantalla completa
         logo =(View)findViewById(R.id.image2);
+        PrefManager.init(SplashCreen.this, LoginActivity.class);
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         progressBar.setProgress(0);
         final long intervalo = 50;
@@ -48,7 +52,6 @@ public class SplashCreen extends AppCompatActivity {
                 }
             }
         },0,intervalo);
-        Animation sysnic = AnimationUtils.loadAnimation(SplashCreen.this, R.anim.animacion);
-logo.startAnimation(sysnic);
     }
+
 }

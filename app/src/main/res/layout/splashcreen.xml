@@ -6,21 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:alpha="16"
-    android:background="@drawable/vernuevo"
+
+    android:background="@drawable/vernuevoq"
     android:orientation="vertical"
     tools:context=".SplashCreen">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="203dp"
-        android:layout_height="237dp"
+        android:layout_width="313dp"
+        android:layout_height="245dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.396">
+        app:layout_constraintVertical_bias="0.488">
 
         <ImageView
             android:id="@+id/image2"
@@ -35,10 +36,10 @@
             android:layout_width="wrap_content"
             android:layout_height="55dp"
             android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/merinda"
+            android:fontFamily="@font/akronimr"
             android:text="@string/RE1"
             android:textColor="@color/colorWhite"
-            android:textSize="22dp"
+            android:textSize="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

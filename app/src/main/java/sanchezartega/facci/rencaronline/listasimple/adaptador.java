@@ -31,12 +31,9 @@ public class adaptador extends BaseAdapter {
     @Override
     public View getView(int i, View convertView, ViewGroup parent) {
 
-        final View vista2 = inflater.inflate(R.layout.reparaciones, null);
-
+        final View vista2 = inflater.inflate(R.layout.carvi, null);
         TextView titulo = (TextView) vista2.findViewById(R.id.tvNombre2);
         TextView duracion = (TextView) vista2.findViewById(R.id.tvPrecio2);
-
-
         ImageView imagen = (ImageView) vista2.findViewById(R.id.ivImagen2);
 
 
